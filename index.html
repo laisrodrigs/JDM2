@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listagem Jd Morumbi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0; /* Cor de fundo geral */
+        }
+        header {
+            background-color: #96c0e2;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #333; /* Cor de fundo do menu */
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0 10px;
+        }
+        nav a:hover {
+            background-color: #9e9d9d; /* Cor de fundo quando hover */
+        }
+        section {
+            display: none; /* Inicialmente oculta todas as seções */
+            padding: 20px;
+            text-align: center; /* Centraliza o conteúdo dentro da seção */
+            margin-top: 20px; /* Espaçamento superior */
+        }
+        section.active {
+            display: block; /* Exibe apenas a seção ativa */
+        }
+        h2 {
+            text-align: center;
+        }
+        p {
+            text-align: center;
+            margin-bottom: 25px; /* Espaçamento inferior */
+        }
+        table {
+            width: 80%; /* Definindo a largura da tabela como 80% da largura da tela */
+            border-collapse: collapse;
+            margin: 0 auto; /* Define margem automática para centralizar a tabela */
+            border: 1px solid #ddd; /* Adiciona borda à tabela */
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd; /* Adiciona borda inferior a cada célula */
+        }
+        th {
+            background-color: #3f3f3f;
+            color: #a6bcc5;
+        }
+        footer {
+            background-color: #333; /* Cor de fundo do rodapé */
+            color: #7894ad9f;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-weight: bold; /* Texto em negrito */
+        }
+        
+        /* Estilos para a barra de pesquisa */
+        #searchInput {
+        width: 80%; /* Largura da barra de pesquisa */
+        padding: 10px; /* Espaçamento interno */
+        border-radius: 20px; /* Borda arredondada */
+        border: 1px solid #ddd; /* Borda */
+        margin-bottom: 10px; /* Espaçamento inferior */
+        font-size: 16px; /* Tamanho da fonte */
+        box-sizing: border-box; /* Garante que o padding e a borda não alterem a largura total */
+        }
+        /* Estilos para o botão de busca */
+        #searchButton {
+        width: 80%; /* Largura do botão de busca */
+        padding: 10px; /* Espaçamento interno */
+        border-radius: 20px; /* Borda arredondada */
+        border: none; /* Sem borda */
+        background-color: #3f3f3f; /* Cor de fundo */
+        color: #fff; /* Cor do texto */
+        font-size: 16px; /* Tamanho da fonte */
+        cursor: pointer; /* Cursor ao passar por cima */
+        transition: background-color 0.3s; /* Transição suave */
+        box-sizing: border-box; /* Garante que o padding e a borda não alterem a largura total */
+    }
+        #searchButton:hover {
+            background-color: #555; /* Cor de fundo ao passar o mouse */
+        }
+
+        /* Estilos responsivos */
+    @media screen and (max-width: 768px) {
+        #searchInput, #searchButton {
+        width: 100%; /* Define a largura como 100% para dispositivos menores */
+        }
+    }
+    .table-container {
+            overflow-x: auto; /* Adiciona uma barra de rolagem horizontal quando necessário */
+            padding: 10px; /* Adiciona um espaçamento interno para melhorar a aparência */
+        }
+    </style>
+
+</head>
+<body>
+
+<header>
+    <h1>Lista de Serviços do Jardim Morumbi</h1>
+</header>
+
+<nav>
+    <a href="#" class="menu-link" data-target="BemVindo">Bem Vindo</a>
+    <a href="#" class="menu-link" data-target="lista">Lista</a>
+</nav>
+
+<section id="BemVindo" class="active">
+    <h2>Seja bem vindo, querido morador do Jardim Morumbi</h2>
+    <p>Aqui você encontrará o contato de alguns estabelecimentos, comércios e serviços autônomos do nosso bairro</p>
+    <p>Basta clicar lá em cima em "Lista" que você será direcionado para ela</p>
+    <p>Caso deseja que seu serviço ou comércio esteja nessa lista, basta entrar em contato através do número (19) 99460-0091</p>
+    <p>Lembrando que ainda estamos em construção e aperfeiçoamento! :) </p>
+</section>
+
+<section id="lista">
+    <h2>Listagem dos Serviços</h2>
+    <!-- Campo de busca -->
+    <div style="text-align: center; padding: 10px;">
+        <input type="text" id="searchInput" placeholder="Digite a categoria...">
+        <button onclick="filterTable()">Buscar</button>
+    </div>
+    <div class="table-container">
+        <!-- Aqui começa a tabela -->
+        <table id="serviceTable">
+            <!-- Conteúdo da tabela omitido por brevidade -->
+        </table>
+    </div>
+    <!-- Tabela de serviços -->
+    <table id="serviceTable">
+        <tr>
+            <th>Categoria de Serviços</th>
+            <th>Nome do Estabelecimento</th>
+            <th>Horário de Funcionamento</th>
+            <th>Whatsapp</th>
+        </tr>
+        <tr>
+            <th>Babá</th>
+            <td>Ruthiely</td>
+            <td>Seg-Seg</td>
+            <td>(19) 99219-3046</td>
+        </tr>
+        <tr>
+            <th>Barbearia</th>
+            <td>Bilico Hair Stu</td>
+            <td>Seg-Sex: 08:30 - 20:00</td>
+            <td>(19) 99988-0899</td>
+        </tr>
+        <tr>
+            <th>Barbearia</th>
+            <td>Gabriel Fernando</td>
+            <td>Seg-Sex: 08:30 - 20:00</td>
+            <td>(19) 99200-2682</td>
+        </tr>
+        <tr>
+            <th>Casas de Aluguel</th>
+            <td>Rita Rodrigues</td>
+            <td>Seg-Sex: 08:00 - 18:00</td>
+            <td>(19) 98325-5920</td>
+        </tr>
+        <tr>
+            <th>Cabeleireiro</th>
+            <td>Mari Cabelos e Unhas</td>
+            <td>Seg-Sex: 08:30 - 20:00</td>
+            <td>(19) 99719-1230</td>
+        </tr>
+        <tr>
+            <th>Cesta de Café da Manhã</th>
+            <td>Nathália</td>
+            <td>Seg-Sex: 08:30 - 20:00</td>
+            <td>(19) 99246-8177
+            </td>
+        </tr>
+        <tr>
+            <th>Confeiteira - Bolos</th>
+            <td>Márcia </td>
+            <td>Seg-Seg</td>
+            <td>(19) 99274-5583</td>
+        </tr>
+        <tr>
+            <th>Costureira</th>
+            <td>Alice</td>
+            <td>Seg-Sex: 08:00 - 20:00</td>
+            <td>(19) 99821-3103</td>
+        </tr>
+        <tr>
+            <th>Costureira</th>
+            <td>Rita Ferreira</td>
+            <td>Seg-Sex: 07:00 - 15:00</td>
+            <td>(19) 98188-7408</td>
+        </tr>
+        <tr>
+            <th>Costureira</th>
+            <td>Rita Rodrigues</td>
+            <td>Seg-Sex: 08:00 - 18:00</td>
+            <td>(19) 98325-5920</td>
+        </tr>
+        <tr>
+            <th>Depilação</th>
+            <td>Samanta</td>
+            <td>Seg-Sáb: 09:00 - 17:00</td>
+            <td>(19) 98844-1344</td>
+        </tr>
+        <tr>
+            <th>Encanador</th>
+            <td>Adriane</td>
+            <td>Seg-Seg</td>
+            <td>(19) 99619-7757</td>
+        </tr>
+        <tr>
+            <th>Encanador</th>
+            <td>Rafael</td>
+            <td>Seg-Sáb: 09:00 - 17:00</td>
+            <td>(19) 99270-7368</td>
+        </tr>
+        <tr>
+            <th>Imobiliário</th>
+            <td>Wellington</td>
+            <td>Seg-Sáb: 09:00 - 17:00</td>
+            <td>(19) 99323-5514</td>
+        </tr>
+        <tr>
+            <th>Marketing Digital - Publicidade</th>
+            <td>Maíra Nabas</td>
+            <td>Seg-Sex: 09:00 - 18:00</td>
+            <td>(19) 97150-7747</td>
+        </tr>
+        <tr>
+            <th>Manicure</th>
+            <td>Mari Cabelos e Unhas</td>
+            <td>Seg-Sex: 08:30 - 20:00</td>
+            <td>(19) 99719-1230</td>
+        </tr>
+        <tr>
+            <th>Manicure</th>
+            <td>Tiely Garcia</td>
+            <td>Seg-Sex: 08:30 - 20:00</td>
+            <td>(19) 99550-3002</td>
+        </tr>
+        <tr>
+            <th>Manicure</th>
+            <td>Nathally</td>
+            <td>Seg-Sex: 08:30 - 20:00</td>
+            <td>(19) 98111-4856</td>
+        </tr>
+        <tr>
+            <th>Massagista</th>
+            <td>Maria Luiza</td>
+            <td>Seg-Sex: 08:30 - 20:00</td>
+            <td>(19) 94321-6789</td>
+        </tr>
+        <tr>
+            <th>Massagem Relaxante</th>
+            <td>Larissa</td>
+            <td>Seg-Sex: 08:30 - 20:00</td>
+            <td>(19) 98135-4694</td>
+        </tr>
+        <tr>
+            <th>Maquiagem Profissional</th>
+            <td>Ruthiely</td>
+            <td>Seg-Seg</td>
+            <td>(19) 99219-3046</td>
+        </tr>
+        <tr>
+            <th>Macânico</th>
+            <td>Cayo</td>
+            <td>Seg-Sáb: 08:00 - 22:00</td>
+            <td>(19) 98898-1757</td>
+        </tr>
+        <tr>
+            <th>Mecânica</th>
+            <td>Oficina Daytona</td>
+            <td>Seg-Sex: 08:00 - 18:00 </td>
+            <td>(19) 97123-3748</td>
+        </tr>
+        <tr>
+            <th>Moda Íntima</th>
+            <td>Intimacy Mayara</td>
+            <td>Seg-Seg</td>
+            <td>(19) 98736-9908</td>
+        </tr>
+        <tr>
+            <th>Recreação Infantil</th>
+            <td>Kids & CIA </td>
+            <td>Sex-Sab: 08:30 - 23:00</td>
+            <td>(19) 98905-7411</td>
+        </tr>
+        <tr>
+            <th>Eventos</th>
+            <td> Ramon Eventos</td>
+            <td>Seg-Seg: Após 16:00</td>
+            <td>(19) 99703-0481</td>
+        </tr>
+        <tr>
+            <th>Van Escolar</th>
+            <td>Cláudia Gonçalves</td>
+            <td>Seg-Sex: 06:00 - 18:00</td>
+            <td>(19) 98978-5116</td>
+        </tr>
+    </table>
+    <div style="height: 50px;"></div>
+</section>
+
+<footer>
+    &copy; Jardim Morumbi - <span id="year"></span>
+</footer>
+
+<script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    function showSection(sectionId) {
+        var sections = document.querySelectorAll('section');
+        for (var i = 0; i < sections.length; i++) {
+            if (sections[i].id === sectionId) {
+                sections[i].style.display = 'block';
+            } else {
+                sections[i].style.display = 'none';
+            }
+        }
+    }
+
+    // Função para filtrar a tabela com base no texto inserido no campo de busca
+    function filterTable() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("serviceTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("th")[0]; // Alterado para buscar pelas células de cabeçalho (th)
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+
+<script>
+    // Seleciona todos os links do menu
+    const menuLinks = document.querySelectorAll('.menu-link');
+
+    // Adiciona um evento de clique a cada link do menu
+    menuLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault(); // Evita que o link faça a navegação padrão
+
+            // Remove a classe 'active' de todas as seções
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Obtém o alvo do link
+            const targetId = this.getAttribute('data-target');
+
+            // Adiciona a classe 'active' à seção alvo
+            document.getElementById(targetId).classList.add('active');
+        });
+    });
+</script>
+
+</body>
+</html>
